@@ -34,7 +34,8 @@ RenderThread::RenderThread() :
 
 RenderThread::~RenderThread()
 {
-    delete m_stream;
+    if (m_stream)
+        delete m_stream;
 }
 
 RenderThread *RenderThread::create(IOStream *p_stream)
