@@ -36,7 +36,6 @@ struct RenderThreadInfo
     GL2Decoder       m_gl2Dec;
     std::list<uint32_t> m_cctx;
     std::list<uint32_t> m_surf;
-    std::list<uint32_t> m_cbuf;
 };
 
 #endif

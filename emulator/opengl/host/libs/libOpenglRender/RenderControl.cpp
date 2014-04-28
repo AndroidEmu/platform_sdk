@@ -241,8 +241,6 @@ static void rcOpenColorBuffer(uint32_t colorbuffer)
     }
     fb->openColorBuffer( colorbuffer );
     RenderThreadInfo *tInfo = RenderThreadInfo::get();
-    if (tInfo)
-        tInfo->m_cbuf.push_back(colorbuffer);
 }
 
 static void rcCloseColorBuffer(uint32_t colorbuffer)
@@ -253,8 +251,6 @@ static void rcCloseColorBuffer(uint32_t colorbuffer)
     }
     fb->closeColorBuffer( colorbuffer );
     RenderThreadInfo *tInfo = RenderThreadInfo::get();
-    if (tInfo)
-        tInfo->m_cbuf.remove(colorbuffer);
 }
 
 static int rcFlushWindowColorBuffer(uint32_t windowSurface)
