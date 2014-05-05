@@ -66,7 +66,6 @@ include $(EMUGL_PATH)/system/OpenglSystemCommon/Android.mk
 include $(EMUGL_PATH)/system/GLESv1/Android.mk
 include $(EMUGL_PATH)/system/GLESv2/Android.mk
 
-include $(EMUGL_PATH)/system/gralloc/Android.mk
 include $(EMUGL_PATH)/system/egl/Android.mk
 
 # Host static libraries
