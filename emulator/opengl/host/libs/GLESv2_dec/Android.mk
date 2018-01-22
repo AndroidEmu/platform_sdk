@@ -36,6 +36,7 @@ LOCAL_SRC_FILES := GL2Decoder.cpp
 ifeq ($(HOST_OS),windows)
 LOCAL_CC = /usr/bin/amd64-mingw32msvc-gcc 
 LOCAL_CXX = /usr/bin/amd64-mingw32msvc-g++
+HOST_AR = /usr/bin/x86_64-w64-mingw32-ar
 endif
 
 $(call emugl-end-module)

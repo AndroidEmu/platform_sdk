@@ -29,6 +29,7 @@ LOCAL_CC = /usr/bin/amd64-mingw32msvc-gcc
 LOCAL_CXX = /usr/bin/amd64-mingw32msvc-g++
 LOCAL_LDLIBS += -L/usr/amd64-mingw32msvc/lib -lmsvcrt
 LOCAL_NO_DEFAULT_LD_DIRS = 1
+HOST_AR = /usr/bin/x86_64-w64-mingw32-ar
 endif
 
 $(call emugl-end-module)

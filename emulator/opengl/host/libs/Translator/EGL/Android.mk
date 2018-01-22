@@ -18,7 +18,7 @@ endif
 
 ifeq ($(HOST_OS),windows)
     host_OS_SRCS = EglWindowsApi.cpp
-    host_common_LDLIBS += -lopengl32 -lgdi32 -Wl
+    host_common_LDLIBS += -lopengl32 -lgdi32
 endif
 
 host_common_SRC_FILES :=      \
@@ -58,6 +58,7 @@ LOCAL_CC = /usr/bin/amd64-mingw32msvc-gcc
 LOCAL_CXX = /usr/bin/amd64-mingw32msvc-g++
 LOCAL_LDLIBS += -L/usr/amd64-mingw32msvc/lib -lmsvcrt
 LOCAL_NO_DEFAULT_LD_DIRS = 1
+HOST_AR = /usr/bin/x86_64-w64-mingw32-ar
 endif
 
 $(call emugl-end-module)
