@@ -32,6 +32,8 @@ bool init_egl_dispatch()
     if (!lib) {
         printf("Failed to open %s\n", libName);
         return NULL;
+    } else {
+         printf("open %s succeed\n", libName);
     }
     s_egl.eglGetError = (eglGetError_t) lib->findSymbol("eglGetError");
     s_egl.eglGetDisplay = (eglGetDisplay_t) lib->findSymbol("eglGetDisplay");

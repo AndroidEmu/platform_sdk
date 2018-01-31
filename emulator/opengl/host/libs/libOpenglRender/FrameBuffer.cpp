@@ -115,8 +115,9 @@ bool FrameBuffer::initialize(int width, int height)
         ERR("Failed to create fb\n");
         return false;
     }
-
+ERR("new FrameBuffer succeed\n");
 #ifdef WITH_GLES2
+ERR("WITH_GLES2\n");
     //
     // Try to load GLES2 Plugin, not mandatory
     //
@@ -127,8 +128,14 @@ bool FrameBuffer::initialize(int width, int height)
         fb->m_caps.hasGL2 = s_gl2_enabled;
     }
 #else
+ERR("undef WITH_GLES2\n");
     fb->m_caps.hasGL2 = false;
 #endif
+
+    if (!s_egl.eglGetDisplay){
+        ERR("s_egl.eglGetDisplay is null\n");
+        return false;
+    }
 
     //
     // Initialize backend EGL display
@@ -138,15 +145,19 @@ bool FrameBuffer::initialize(int width, int height)
         ERR("Failed to Initialize backend EGL display\n");
         delete fb;
         return false;
+    } else {
+        ERR("m_eglDisplay\n");
     }
 
     if (!s_egl.eglInitialize(fb->m_eglDisplay, &fb->m_caps.eglMajor, &fb->m_caps.eglMinor)) {
         ERR("Failed to eglInitialize\n");
         delete fb;
         return false;
+    } else {
+        ERR("eglInitialize\n");
     }
 
-    DBG("egl: %d %d\n", fb->m_caps.eglMajor, fb->m_caps.eglMinor);
+    ERR("egl: %d %d\n", fb->m_caps.eglMajor, fb->m_caps.eglMinor);
     s_egl.eglBindAPI(EGL_OPENGL_ES_API);
 
     //
