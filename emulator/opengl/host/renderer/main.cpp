@@ -110,22 +110,27 @@ int main(int argc, char *argv[])
     XInitThreads();
 #endif
 
+    initLibrary();
+    setStreamMode(STREAM_MODE_PIPE);
+
     //
     // initialize Framebuffer
     //
+    fprintf(stderr, "before init pid %d \n", getpid());
     bool inited = FrameBuffer::initialize(winWidth, winHeight);
     if (!inited) {
         fprintf(stderr,"Failed to initialize Framebuffer\n");
         return -1;
     }
 
+fprintf(stderr, "FrameBuffer::initialize(%d, %d)\n", winWidth, winHeight);
     inited = FrameBuffer::setupSubWindow(windowId,
                                          winX, winY, winWidth, winHeight, 0.0);
     if (!inited) {
         fprintf(stderr,"Failed to create subwindow Framebuffer\n");
         return -1;
     }
-
+fprintf(stderr, "FrameBuffer::setupSubWindow succeed!\n");
     //
     // Create and run a render server listening to the given port number
     //
@@ -136,13 +141,14 @@ int main(int argc, char *argv[])
         return -1;
     }
     printf("render server listening at '%s'\n", addr);
-
+fprintf(stderr, "FRenderServer::create succeed!\n");
 #ifndef _WIN32
     //
     // run the server listener loop
     //
     server->Main();
 #else
+
     //
     // on windows we need to handle messages for the
     // created subwindow. So we run the server on a seperate
@@ -150,7 +156,7 @@ int main(int argc, char *argv[])
     // in this main thread.
     //
     server->start();
-
+fprintf(stderr, "server->start();!\n");
     //
     // Dispatch events for the subwindow
     // During termination of the render server, the FrameBuffer
